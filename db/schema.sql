@@ -25,7 +25,6 @@ INSERT INTO products (category_id, name, base_price, description) VALUES
 (3,'Papas Locas',22000,'Papas a la francesa, maiz tierno, pollo desmechado, chorizo ranchero, cubierta de triple queso fundido, salsas. Valor del icoport incluido'),
 (3,'Salchicarne Mixto',40000,'Papas a la francesa, carne de lomo de res, pechuga de pollo asada, chorizo ranchero, salchicha de pollo, queso fundido, maiz tierno, cebolla grille, salsas. Valor del icoport incluido');
 
-INSERT INTO extras (name, price)
-VALUES ('Papas a la Francesa', 4000);
-
-SELECT * FROM puntofamiliar.products
+INSERT INTO extras (name, price)VALUES
+('Papas a la Francesa', 4000),
+('Queso rallado',3000);
