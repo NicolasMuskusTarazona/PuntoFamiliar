@@ -28,3 +28,6 @@ INSERT INTO products (category_id, name, base_price, description) VALUES
 INSERT INTO extras (name, price)VALUES
 ('Papas a la Francesa', 4000),
 ('Queso rallado',3000);
+
+INSERT INTO admins (username, password)
+VALUES ('Admin','Hol1234');
