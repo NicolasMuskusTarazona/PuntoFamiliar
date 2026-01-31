@@ -1,14 +1,20 @@
 import { Request, Response } from "express";
+import { CategorieDTO } from "../DTOs/categories.dto"
 import * as service from "../services/categories.service";
 
 
 // CREATE
 export const create = async (req: Request, res: Response) => {
     try {
-        const categories = await service.createCategories(req.body);
-        res.status(201).json(categories);
-    } catch (error) {
-        res.status(500).json({ message: "Error creating categories", error });
+        const categorieData = CategorieDTO.create(req.body)
+        const categorie = await service.createCategories(categorieData)
+
+        res.status(201).json({
+            message: "Categorie created correctly",
+            categorie
+        })
+    } catch (error: any) {
+        res.status(400).json({message: error.message || "Invalid data"})
     }
 }
 
@@ -40,15 +46,19 @@ export const getById = async (req: Request, res: Response) => {
 // UPDATE
 export const update = async (req: Request, res: Response) => {
     try {
-        const id = Number(req.params.id);
-        const categories = await service.updateCategories(id, req.body);
-        if (!categories) {
-            res.status(404).json({ message: "Categories not found" });
-            return;
+        const id = Number(req.params.id)
+        if (isNaN(id)) {
+            return res.status(400).json({message: "Invalid ID"})
         }
-        res.json(categories);
-    } catch (error) {
-        res.status(500).json({ message: "Error updating categories", error });
+        const CategorieData = CategorieDTO.update(req.body)
+        const categorie = await service.updateCategories(id, CategorieData)
+
+        if (!categorie) {
+            return res.status(404).json({message: "Categorie not found"})
+        }
+        res.status(200).json({message: "Categorie updated correctly",categorie})
+    } catch (error: any) {
+        res.status(400).json({message: error.message || "Error updating categorie"})
     }
 }
 

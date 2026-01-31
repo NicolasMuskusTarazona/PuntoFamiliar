@@ -1,25 +1,20 @@
-import { Request, Response } from "express";
-import * as service from "../services/extras.service";
+import { Request, Response } from "express"
+import { ExtraDTO } from "../DTOs/extras.dto"
+import * as service from "../services/extras.service"
 
-//CREATE
 export const create = async (req: Request, res: Response) => {
     try {
-        const { name, price, product_id } = req.body;
-        if (!name || price == null || !product_id) {
-            return res.status(400).json({
-                message: "name, price y product_id son obligatorios"
-            });
-        }
-        const extra = await service.createExtras({name,price,product_id});
-        res.status(201).json(extra);
-    } catch (error: any) {
-        res.status(500).json({
-            message: "Error creating extras",
-            error: error.message || error
-        });
-    }
-};
+        const extraData = ExtraDTO.create(req.body)
+        const extra = await service.createExtras(extraData)
 
+        res.status(201).json({
+            message: "Extra created correctly",
+            extra
+        })
+    } catch (error: any) {
+        res.status(400).json({message: error.message || "Invalid data"})
+    }
+}
 
 // GET ALL
 export const getAll = async (_req: Request, res: Response) => {
@@ -49,15 +44,19 @@ export const getById = async (req: Request, res: Response) => {
 // UPDATE
 export const update = async (req: Request, res: Response) => {
     try {
-        const id = Number(req.params.id);
-        const extras = await service.updateExtras(id, req.body);
-        if (!extras) {
-            res.status(404).json({ message: "Extras not found" });
-            return;
+        const id = Number(req.params.id)
+        if (isNaN(id)) {
+            return res.status(400).json({message: "Invalid ID"})
         }
-        res.json(extras);
-    } catch (error) {
-        res.status(500).json({ message: "Error updating extras", error });
+        const extraData = ExtraDTO.update(req.body)
+        const extra = await service.updateExtras(id, extraData)
+
+        if (!extra) {
+            return res.status(404).json({message: "Extra not found"})
+        }
+        res.status(200).json({message: "Extra updated correctly",extra})
+    } catch (error: any) {
+        res.status(400).json({message: error.message || "Error updating extra"})
     }
 }
 
