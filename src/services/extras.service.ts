@@ -1,4 +1,4 @@
-import {Extras} from "../models/extras.model"
+import { Extras } from "../models/extras.model"
 import { db } from "../db";
 
 let extras: Extras[] = []
@@ -17,19 +17,23 @@ export const getExtrasById = async (id: number): Promise<Extras | null> => {
 
 // CREATE
 export const createExtras = async (extras: Omit<Extras, 'id'>): Promise<Extras> => {
+    if (extras.price == null) {
+        throw new Error('Extra price is required');
+    }
     const [result] = await db.execute(
-        'INSERT INTO extras (name,price) VALUES (?,?)',
-        [extras.name,extras.price]
+        'INSERT INTO extras (name, price) VALUES (?, ?)',
+        [extras.name, extras.price]
     );
     const insertId = (result as any).insertId;
     return { id: insertId, ...extras };
-}
+};
+
 
 // UPDATE
 export const updateExtras = async (id: number, data: Partial<Extras>): Promise<Extras | null> => {
     await db.execute(
         'UPDATE extras SET name = ?, price = ?  WHERE id = ?',
-        [data.name,data.price, id]
+        [data.name, data.price, id]
     );
     return getExtrasById(id);
 }

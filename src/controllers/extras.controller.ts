@@ -1,15 +1,25 @@
 import { Request, Response } from "express";
 import * as service from "../services/extras.service";
 
-// CREATE
+//CREATE
 export const create = async (req: Request, res: Response) => {
     try {
-        const extras = await service.createExtras(req.body);
-        res.status(201).json(extras);
-    } catch (error) {
-        res.status(500).json({ message: "Error creating extras", error });
+        const { name, price, product_id } = req.body;
+        if (!name || price == null || !product_id) {
+            return res.status(400).json({
+                message: "name, price y product_id son obligatorios"
+            });
+        }
+        const extra = await service.createExtras({name,price,product_id});
+        res.status(201).json(extra);
+    } catch (error: any) {
+        res.status(500).json({
+            message: "Error creating extras",
+            error: error.message || error
+        });
     }
-}
+};
+
 
 // GET ALL
 export const getAll = async (_req: Request, res: Response) => {

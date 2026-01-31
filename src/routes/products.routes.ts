@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as controller from "../controllers/extras.controller"
+import * as controller from "../controllers/products.controller"
 import { adminOnly } from "../middlewares/admin.middlewares";
 
 const router = Router();

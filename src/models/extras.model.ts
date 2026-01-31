@@ -1,5 +1,6 @@
 export interface Extras {
     id: number
     name: string
-    price:number
+    price: number
+    product_id: number
 }

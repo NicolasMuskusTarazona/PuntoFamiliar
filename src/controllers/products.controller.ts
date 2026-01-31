@@ -1,22 +1,33 @@
 import { Request, Response } from "express";
 import * as service from "../services/products.service";
+import * as extrasService from "../services/extras.service";
 
-
-// CREATE
 export const create = async (req: Request, res: Response) => {
     try {
-        const products = await service.createProducts(req.body);
-        res.status(201).json(products);
-    }catch (error: any) {
-    console.error(error); // 👈 CLAVE
-
-    res.status(500).json({
-        message: "Error creating products",
-        error: error.message || error
-    });
-}
-
-}
+        const { extras, ...productData } = req.body;
+        const product = await service.createProducts(productData);
+        if (Array.isArray(extras)) {
+            for (const extra of extras) {
+                if (!extra.name || extra.price == null) {
+                    return res.status(400).json({
+                        message: "Si hay extras, name y price son obligatorios"
+                    });
+                }
+                await extrasService.createExtras({name: extra.name,price: extra.price,product_id: product.id
+                });
+            }
+        }
+        res.status(201).json({
+            message: "Producto creado correctamente",
+            product
+        });
+    } catch (error: any) {
+        res.status(500).json({
+            message: "Error creating product",
+            error: error.message || error
+        });
+    }
+};
 
 // GET ALL
 export const getAll = async (_req: Request, res: Response) => {

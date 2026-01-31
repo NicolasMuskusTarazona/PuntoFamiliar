@@ -16,14 +16,15 @@ export const getProductsById = async (id: number): Promise<Products | null> => {
 }
 
 // CREATE
-export const createProducts = async (products: Omit<Products, 'id'>): Promise<Products> => {
+export const createProducts = async (product: Omit<Products, "id">): Promise<Products> => {
     const [result] = await db.execute(
-        'INSERT INTO products (name,category_id,base_price,description) VALUES (?,?,?,?)',
-        [products.name,products.category_id,products.base_price,products.description]
+        `INSERT INTO products (name, category_id, base_price, description)VALUES (?, ?, ?, ?)`,
+        [product.name, product.category_id, product.base_price,product.description ?? null ]
     );
     const insertId = (result as any).insertId;
-    return { id: insertId, ...products };
-}
+    return {id: insertId,...product};
+};
+
 
 // UPDATE
 export const updateProducts = async (id: number, data: Partial<Products>): Promise<Products | null> => {

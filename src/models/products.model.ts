@@ -3,5 +3,5 @@ export interface Products {
     name: string
     category_id: number
     base_price: number
-    description: Text
+    description?: string
 }
