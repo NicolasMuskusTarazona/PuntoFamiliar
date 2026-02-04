@@ -1,9 +1,19 @@
 import bcrypt from "bcrypt";
 import { db } from "../db";
 
-const createAdmin = async () => {
+export const seedAdmin = async () => {
     const username = "admin";
     const password = "12345";
+
+    const [rows]: any = await db.query(
+        "SELECT id FROM admins WHERE username = ?",
+        [username]
+    );
+
+    if (rows.length > 0) {
+        console.log("Admin already exists");
+        return;
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -12,8 +22,5 @@ const createAdmin = async () => {
         [username, hashedPassword]
     );
 
-    console.log("Admin successfully created");
-    process.exit();
+    console.log("Admin created automatically");
 };
-
-createAdmin();
