@@ -6,7 +6,8 @@ export class ProductsDTO {
             name: z.string().min(1, "Required name"),
             category_id: z.number().int().positive(),
             base_price: z.number().positive(),
-            description: z.string().optional()
+            description: z.string().optional(),
+            image: z.string().min(1, "Required image")
         })
 
         const result = schema.safeParse(data)
@@ -23,7 +24,8 @@ export class ProductsDTO {
             name: z.string().min(1).optional(),
             category_id: z.number().int().positive().optional(),
             base_price: z.number().positive().optional(),
-            description: z.string().optional()
+            description: z.string().optional(),
+            image: z.string().min(1).optional()
         })
 
         const result = schema.safeParse(data)

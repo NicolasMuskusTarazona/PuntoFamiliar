@@ -4,6 +4,7 @@ export class CategorieDTO {
     static create(data: unknown) {
         const schema = z.object({
             name: z.string().min(1, "Required name"),
+            image: z.string().min(1, "Required image"),
         })
 
         const result = schema.safeParse(data)
@@ -18,6 +19,7 @@ export class CategorieDTO {
     static update(data: unknown) {
         const schema = z.object({
             name: z.string().min(1).optional(),
+            image: z.string().min(1).optional(),
         })
 
         const result = schema.safeParse(data)
