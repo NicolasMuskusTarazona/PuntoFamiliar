@@ -18,8 +18,8 @@ export const getCategoriesById = async (id: number): Promise<Categories | null> 
 // CREATE
 export const createCategories = async (categories: Omit<Categories, 'id'>): Promise<Categories> => {
     const [result] = await db.execute(
-        'INSERT INTO categories (name) VALUES (?)',
-        [categories.name]
+        'INSERT INTO categories (name,image) VALUES (?,?)',
+        [categories.name,categories.image]
     );
     const insertId = (result as any).insertId;
     return { id: insertId, ...categories };
@@ -28,8 +28,8 @@ export const createCategories = async (categories: Omit<Categories, 'id'>): Prom
 // UPDATE
 export const updateCategories = async (id: number, data: Partial<Categories>): Promise<Categories | null> => {
     await db.execute(
-        'UPDATE categories SET name = ?  WHERE id = ?',
-        [data.name, id]
+        'UPDATE categories SET name = ?, image = ? WHERE id = ?',
+        [data.name,data.image, id]
     );
     return getCategoriesById(id);
 }

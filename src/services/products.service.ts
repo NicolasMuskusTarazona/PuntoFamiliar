@@ -18,8 +18,8 @@ export const getProductsById = async (id: number): Promise<Products | null> => {
 // CREATE
 export const createProducts = async (product: Omit<Products, "id">): Promise<Products> => {
     const [result] = await db.execute(
-        `INSERT INTO products (name, category_id, base_price, description)VALUES (?, ?, ?, ?)`,
-        [product.name, product.category_id, product.base_price,product.description ?? null ]
+        `INSERT INTO products (name, category_id, base_price, image,description)VALUES (?, ?, ?,?, ?)`,
+        [product.name, product.category_id, product.base_price,product.image,product.description ?? null ]
     );
     const insertId = (result as any).insertId;
     return {id: insertId,...product};
@@ -29,8 +29,8 @@ export const createProducts = async (product: Omit<Products, "id">): Promise<Pro
 // UPDATE
 export const updateProducts = async (id: number, data: Partial<Products>): Promise<Products | null> => {
     await db.execute(
-        'UPDATE products SET name = ?, category_id = ?, base_price = ?, description = ?  WHERE id = ?',
-        [data.name,data.category_id,data.base_price,data.description, id]
+        'UPDATE products SET name = ?, category_id = ?, base_price = ?, image = ?, description = ?  WHERE id = ?',
+        [data.name,data.category_id,data.base_price,data.image,data.description, id]
     );
     return getProductsById(id);
 }
