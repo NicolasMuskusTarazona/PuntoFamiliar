@@ -1,6 +1,6 @@
 const menuGrid = document.getElementById("menuGrid");
 
-fetch("http://192.168.1.5:5000/categories")
+fetch("http://localhost:5000/categories")
     .then(res => {
         if (!res.ok) throw new Error("Error fetching categories");
         return res.json();
