@@ -1,0 +1,98 @@
+/* ================= MENU PAGE ================= */
+
+.menu-page {
+    padding: 120px 80px;
+    background: #fff;
+    min-height: 100vh;
+}
+
+/* reutilizamos menu-title del style.css */
+.menu-page .menu-title {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+/* GRID DE PRODUCTOS */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 60px;
+    justify-items: center;
+}
+
+/* CARD DE PRODUCTO */
+.product-card {
+    border: 2px solid crimson;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 350px;
+    height: 460px;
+    background: white;
+    box-shadow: 8px 8px 0 crimson;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    overflow: hidden; 
+}
+
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 16px;
+    flex-shrink: 0;
+}
+
+
+.product-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+    line-height: 1.2;
+}
+
+
+
+.product-card p {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.4;
+    margin-bottom: auto;
+}
+
+.product-card strong {
+    margin-top: 20px;
+    font-size: 22px;
+    color: crimson;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 760px) {
+    .menu-page {
+        padding: 100px 22px;
+    }
+
+    .products-grid {
+        gap: 30px;
+    }
+
+    .product-card {
+        max-width: 300px;
+        height: auto;
+    }
+
+    .product-card img {
+        max-width: 220px;
+    }
+}

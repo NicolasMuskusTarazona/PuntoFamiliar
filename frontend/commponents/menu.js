@@ -15,16 +15,25 @@ fetch("http://localhost:5000/categories")
                 <span>${category.name}</span>
             `;
 
+            card.addEventListener("click", () => {
+                window.location.href = `/menu.html?id=${category.id}`;
+            });
+
             menuGrid.appendChild(card);
         });
 
-        // Card extra
+        // ===== EXPLORE MENU =====
         const explore = document.createElement("div");
         explore.className = "ExploreMenu";
         explore.innerHTML = `
             <span>EXPLORE</span>
             <button>FULL MENU</button>
         `;
+
+        explore.addEventListener("click", () => {
+            window.location.href = "/menu.html";
+        });
+
         menuGrid.appendChild(explore);
     })
     .catch(error => {

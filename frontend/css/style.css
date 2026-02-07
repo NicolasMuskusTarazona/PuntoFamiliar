@@ -590,6 +590,11 @@ CONTACT US SECTION
     cursor: pointer;
 }
 
+.menu-card,
+.ExploreMenu {
+    cursor: pointer;
+}
+
 @media (max-width: 760px) {
 
     /* ================= HEADER ================= */

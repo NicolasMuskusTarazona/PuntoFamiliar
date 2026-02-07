@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PUNTO FAMILIAR | MENU</title>
+
+    <!-- CSS global -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- CSS exclusivo del menu -->
+    <link rel="stylesheet" href="/css/menu.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="icon" href="/icon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <!-- HEADER (REUTILIZADO) -->
+    <header class="header" id="start">
+        <div class="paint-strip"></div>
+        <nav class="nav">
+            <div class="logo">PUNTO<br>FAMILIAR</div>
+            <ul class="baner">
+                <li><a href="/index.html">INICIO</a></li>
+                <li><a href="/index.html#TheMenu">CATEGORIAS</a></li>
+                <li><a href="/index.html#contact">PEDIDO</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- SECTION MENU -->
+    <section class="menu-page">
+        <h2 class="menu-title">NUESTRO MENU</h2>
+
+        <div class="menu-grid products-grid" id="productsGrid">
+            <!-- products.js inyecta aqui -->
+        </div>
+    </section>
+
+    <!-- FOOTER (REUTILIZADO) -->
+    <footer class="footer">
+        <div class="footer-top">
+            <button class="btn-contact">FRESCO Y SIMPLE</button>
+            <a href="#start">
+                <button class="btn-top">VOLVER <span>↑</span></button>
+            </a>
+        </div>
+
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo-box">
+                    PUNTO<br>FAMILIAR
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <ul>
+                    <li>NICOLAS MUSKUS TARAZONA</li>
+                    <li>PUNTO FAMILIAR</li>
+                    <li>COLOMBIA</li>
+                    <li>GIRON</li>
+                </ul>
+                <ul>
+                    <li>DESARROLLADOR WEB</li>
+                    <li>COMIDA RAPIDA</li>
+                    <li>SANTANDER</li>
+                    <li>CARRIZAL</li>
+                </ul>
+            </div>
+
+            <div class="footer-extra">
+                <a href="https://github.com/NicolasMuskusTarazona" target="_blank">
+                    <button class="btn-newsletter">
+                        CONTACTO DESARROLLADOR
+                    </button>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./commponents/products.js"></script>
+</body>
+
+</html>
