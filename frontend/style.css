@@ -297,24 +297,26 @@ body {
     margin-bottom: 15px;
 }
 
+/* ================= LOCATION SECTION ================= */
+
 .location-section {
-    padding: 120px 80px;
-    overflow-x: hidden;
+    padding: 100px 62px;
     background: #fff;
 }
 
 .location-container {
-    display: flex;
-    align-items: center;
-    gap: 80px;
-    max-width: 1400px;
+    max-width: 1700px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(320px, 1fr)2.5fr minmax(260px, 0.8fr);
+    align-items: center;
+    column-gap: 120px;
 }
 
-/* Texto */
+/* ===== Columna 1: Info ===== */
 .location-info {
-    flex: 1;
-    text-align: left;
+    justify-self: start;
+    max-width: 320px;
 }
 
 .location-icon {
@@ -326,7 +328,7 @@ body {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 70px;
     letter-spacing: 3px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .location-info p {
@@ -346,12 +348,18 @@ body {
     text-decoration: none;
 }
 
-/* Mapa */
+
+/* ===== Columna 2: Mapa ===== */
 .location-map {
-    width: 100%;
-    height: 880px;
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    /* CLAVE */
+    width: 1000px;
+    height: 620px;
     border-radius: 20px;
     overflow: hidden;
+    z-index: 1;
 }
 
 .location-map iframe {
@@ -360,13 +368,15 @@ body {
     border: none;
 }
 
+/* ===== Columna 3: Imagen decorativa ===== */
 .map-side-image {
     position: absolute;
-    right: -390px;
+    right: -290px;
     top: 50%;
-    transform: translateY(-50%);
-    width: 560px;
+    width: 420px;
+    z-index: 2;
 }
+
 
 .map-wrapper {
     position: relative;
@@ -403,7 +413,6 @@ CONTACT US SECTION
     padding: 40px;
     background: white;
     border-radius: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .qr-code {
@@ -686,8 +695,9 @@ CONTACT US SECTION
     }
 
     .location-container {
-        flex-direction: column;
-        gap: 40px;
+        display: grid;
+        grid-template-columns: 1fr;
+        row-gap: 40px;
     }
 
     .location-info h2 {
@@ -700,10 +710,17 @@ CONTACT US SECTION
         line-height: 1.6;
     }
 
+    .location-info {
+        max-width: 100%;
+        text-align: center;
+        justify-self: center;
+    }
+
     .location-map {
+        grid-column: auto;
+        grid-row: auto;
         width: 100%;
         height: 420px;
-        border-radius: 20px;
     }
 
     .map-side-image {
