@@ -14,7 +14,11 @@ export const getProductsById = async (id: number): Promise<Products | null> => {
     const [rows] = await db.query('SELECT * FROM products WHERE id = ?', [id]);
     return (rows as Products[])[0] || null;
 }
-
+// GET PRODUCTS BY CATEGORY
+export const getProductsByCategory = async (categoryId: number) => {
+    const [rows] = await db.execute("SELECT * FROM products WHERE category_id = ?",[categoryId]);
+    return rows;
+};
 // CREATE
 export const createProducts = async (product: Omit<Products, "id">): Promise<Products> => {
     const [result] = await db.execute(

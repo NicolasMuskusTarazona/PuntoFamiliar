@@ -5,6 +5,7 @@ import { adminOnly } from "../middlewares/admin.middlewares";
 const router = Router();
 
 // Public
+router.get("/category/:id", controller.getProductsByCategoryController);
 router.get("/", controller.getAll);
 router.get("/:id", controller.getById);
 

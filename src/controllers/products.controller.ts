@@ -14,9 +14,7 @@ export const create = async (req: Request, res: Response) => {
         if (Array.isArray(extras)) {
             for (const extra of extras) {
                 if (!extra.name || extra.price == null) {
-                    return res.status(400).json({
-                        message: "Extras name and price are required"
-                    })
+                    return res.status(400).json({message: "Extras name and price are required"})
                 }
 
                 await extrasService.createExtras({
@@ -27,14 +25,9 @@ export const create = async (req: Request, res: Response) => {
             }
         }
 
-        res.status(201).json({
-            message: "Product created correctly",
-            product
-        })
+        res.status(201).json({message: "Product created correctly",product})
     } catch (error: any) {
-        res.status(400).json({
-            message: error.message || "Invalid data"
-        })
+        res.status(400).json({message: error.message || "Invalid data"})
     }
 }
 
@@ -67,11 +60,24 @@ export const getById = async (req: Request, res: Response) => {
 
         res.status(200).json(product)
     } catch (error) {
-        res.status(500).json({
-            message: "Error fetching product"
-        })
+        res.status(500).json({message: "Error fetching product"})
     }
 }
+
+// GET PRODUCTS BY CATEGORY
+export const getProductsByCategoryController = async (req: Request,res: Response) => {
+    try {
+        const { id } = req.params;
+        const categoryId = Number(id);
+        if (isNaN(categoryId)) {
+            return res.status(400).json({message: "Category id invalido"});
+        }
+        const products = await service.getProductsByCategory(categoryId);
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({message: "Error obteniendo productos por categoria"});
+    }
+};
 
 // UPDATE
 export const update = async (req: Request, res: Response) => {
