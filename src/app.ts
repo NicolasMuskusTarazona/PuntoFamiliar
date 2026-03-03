@@ -1,24 +1,31 @@
-import express from "express"
-import path from "path"
+import express from "express";
+import cors from "cors";
+import helmet from "helmet";
+import path from "path";
 
-import categoriesRoutes from "./routes/categories.routes"
-import extrasRoutes from "./routes/extras.routes"
-import productsRoutes from "./routes/products.routes"
-import adminRoutes from "./routes/admin.routes"
+import productsRoutes from "./modules/products/products.routes";
+import categoriesRoutes from "./modules/categories/categories.routes";
+import extrasRoutes from "./modules/extras/extras.routes";
+import adminRoutes from "./modules/admin/admin.routes";
 
-const app = express()
+const app = express();
 
-app.use(express.json())
+// Middlewares 
+app.use(cors());
+app.use(helmet());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// FRONTEND
-const frontendPath = path.join(__dirname, "..", "frontend")
-app.use(express.static(frontendPath))
+app.use("/products", productsRoutes);
+app.use("/categories", categoriesRoutes);
+app.use("/extras", extrasRoutes);
+app.use("/admin", adminRoutes);
 
-// API routes
-app.use("/categories", categoriesRoutes)
-app.use("/extras", extrasRoutes)
-app.use("/products", productsRoutes)
-app.use("/admin", adminRoutes)
+app.use(express.static(path.join(__dirname, "../frontend")));
 
+// Ruta principal
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "../index.html"));
+});
 
-export default app
+export default app;

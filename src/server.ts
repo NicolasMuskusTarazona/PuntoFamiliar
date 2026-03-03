@@ -1,25 +1,17 @@
 import app from "./app";
 import { testConnection } from "./db";
-import { seedAdmin } from "./seed/createAdmin";
+import { seedAdmin } from "./modules/admin/createAdmin";
 
-const PORT = 5000;
+const PORT = Number(process.env.PORT) || 5000;
 
 (async () => {
-    await testConnection();
-    await seedAdmin();
-    app.listen(PORT, () => {
-        console.log(` Server running on port ${PORT}`);
-    });
+    try {
+        await testConnection();
+        await seedAdmin(); 
+        app.listen(PORT, "0.0.0.0", () => {
+            console.log(`Server running on port ${PORT}`);
+        });
+    } catch (error) {
+        console.error("Error starting server:", error);
+    }
 })();
-
-// OBTENER DATOS DESDE EL CELULAR
-// TENGO QUE ACTUALIZAR EL GET CON UN PUERTO, NO CON UN LOCALHOST LO MISMO EN MENU.JS
-/*(async () => {
-    await testConnection();
-    await seedAdmin();
-    app.listen(PORT, "0.0.0.0", () => {
-        console.log("Servidor corriendo en puerto 5000");
-    });
-
-})();
-*/

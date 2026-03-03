@@ -595,6 +595,26 @@ CONTACT US SECTION
     cursor: pointer;
 }
 
+/* ===== BOTON ADMIN ===== */
+.link-admin {
+    display: block;
+    margin-top: 14px;
+}
+
+.btn-admin {
+    background: transparent;
+    border: 2px dashed #555;
+    color: #555;
+    padding: 12px 28px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    width: 100%;
+}
+
 @media (max-width: 760px) {
 
     /* ================= HEADER ================= */

@@ -1,0 +1,27 @@
+{
+    "name": "puntofamiliar-dev",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspace",
+    "forwardPorts": [
+        5000
+    ],
+    "remoteEnv": {
+        "NODE_ENV": "development"
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-azuretools.vscode-docker",
+                "Prisma.prisma",
+                "esbenp.prettier-vscode",
+                "dbaeumer.vscode-eslint"
+            ]
+        }
+    },
+    "postCreateCommand": "npm install && npx prisma generate",
+    "remoteUser": "node"
+}
