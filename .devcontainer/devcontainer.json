@@ -4,13 +4,10 @@
     "service": "app",
     "workspaceFolder": "/workspace",
     "forwardPorts": [
-        5000
+        3000
     ],
     "remoteEnv": {
         "NODE_ENV": "development"
-    },
-    "features": {
-        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
     },
     "customizations": {
         "vscode": {
@@ -18,10 +15,14 @@
                 "ms-azuretools.vscode-docker",
                 "Prisma.prisma",
                 "esbenp.prettier-vscode",
-                "dbaeumer.vscode-eslint"
+                "dbaeumer.vscode-eslint",
+                "mhutchie.git-graph",
+                "vivaxy.vscode-conventional-commits",
+                "oderwat.indent-rainbow",
+                "Postman.postman-for-vscode"
             ]
         }
     },
-    "postCreateCommand": "npm install && npx prisma generate",
+    "postCreateCommand": "npx prisma generate",
     "remoteUser": "node"
 }
