@@ -93,3 +93,27 @@ y
 ```bash
 npm run dev
 ```
+
+## Resultado esperado
+Si todo funciona correctamente, deberías ver algo similar a:
+
+```bash
+Conectado a MySQL
+Admin already exists
+Server running on port 5000
+```
+
+# Flujo completo resumido
+
+```bash
+git clone https://github.com/NicolasMuskusTarazona/PuntoFamiliar
+cd PuntoFamiliar
+cd .devcontainer
+docker compose up -d
+cd ..
+docker exec -it devcontainer-app-1 bash
+rm -rf node_modules package-lock.json
+npm install
+npx prisma migrate reset
+npm run dev
+```
