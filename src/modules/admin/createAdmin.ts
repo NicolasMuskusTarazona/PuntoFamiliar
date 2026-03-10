@@ -2,11 +2,11 @@ import bcrypt from "bcrypt";
 import { db } from "../../db";
 
 export const seedAdmin = async () => {
-    const username = "admin";
+    const username = "Admin";
     const password = "12345";
 
     const [rows]: any = await db.query(
-        "SELECT id FROM admins WHERE username = ?",
+        "SELECT id FROM Admin WHERE username = ?",
         [username]
     );
 
@@ -18,7 +18,7 @@ export const seedAdmin = async () => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     await db.query(
-        "INSERT INTO admins (username, password) VALUES (?, ?)",
+        "INSERT INTO Admin (username, password) VALUES (?, ?)",
         [username, hashedPassword]
     );
 
